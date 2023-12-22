@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const swaggerUi = require ("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
@@ -19,7 +19,7 @@ const options = {
 const swaggerSpec = swaggerJsdoc (options);
 
 app.use(express.json());
-app.use("", swaggerUi.serve,swaggerUi.setup(swaggerSpec));	//localhost behind add this /api-docs
+app.use("/api-docs", swaggerUi.serve,swaggerUi.setup(swaggerSpec));	//localhost behind add this /api-docs
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
  })
